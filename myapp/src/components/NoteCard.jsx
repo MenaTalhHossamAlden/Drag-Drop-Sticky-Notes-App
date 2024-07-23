@@ -1,9 +1,9 @@
 import { useRef, useEffect, React, useState } from "react";
 import Trash from "../icons/Trash";
+import { setNewPosition, autoGrow, setZIndex } from "../utils";
 
 const NoteCard = ({ note }) => {
   const body = JSON.parse(note.body);
-  //   const position = JSON.parse(note.position);
   const [position, setPosition] = useState(JSON.parse(note.position));
   const colors = JSON.parse(note.colors);
 
@@ -16,17 +16,14 @@ const NoteCard = ({ note }) => {
     autoGrow(textAreaRef);
   });
 
-  const autoGrow = (textarea) => {
-    // Destructuring to get the current property of the ref object
-    const { current } = textarea;
-    current.style.height = current.scrollHeight + "px";
-  };
-
   const mouseDown = (e) => {
     mouseStartPos.x = e.clientX;
     mouseStartPos.y = e.clientY;
 
     document.addEventListener("mousemove", mouseMove);
+    document.addEventListener("mouseup", mouseUp);
+
+    setZIndex(cardRef.current);
   };
 
   const mouseMove = (e) => {
@@ -35,14 +32,17 @@ const NoteCard = ({ note }) => {
       y: mouseStartPos.y - e.clientY,
     };
 
-    console.log(mouseMoveDir.x, mouseMoveDir.y);
-
     mouseStartPos.x = e.clientX;
     mouseStartPos.y = e.clientY;
 
-    const { current } = cardRef;
-    current.style.left += mouseMoveDir.x;
-    current.style.top += mouseMoveDir.y;
+    const newPosition = setNewPosition(cardRef.current, mouseMoveDir);
+
+    setPosition(newPosition);
+  };
+
+  const mouseUp = (e) => {
+    document.removeEventListener("mousemove", mouseMove);
+    document.removeEventListener("mouseup", mouseUp);
   };
 
   return (
