@@ -1,6 +1,7 @@
 import { React, useContext } from "react";
 import Trash from "../icons/Trash";
 import { db } from "../appwrite/databases";
+import { NoteContext } from "../context/NoteContext";
 
 const DeleteButton = ({ id }) => {
   const { setNotes } = useContext(NoteContext);

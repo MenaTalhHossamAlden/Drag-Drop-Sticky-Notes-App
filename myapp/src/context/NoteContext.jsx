@@ -1,4 +1,4 @@
-import { Children, createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import Spinner from "../icons/Spinner";
 import { db } from "../appwrite/databases";
 
