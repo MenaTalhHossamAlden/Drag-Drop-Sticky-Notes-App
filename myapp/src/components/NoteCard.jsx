@@ -1,5 +1,6 @@
 import { useRef, useEffect, React, useState } from "react";
 import Trash from "../icons/Trash";
+import Spinner from "../icons/Spinner";
 import { setNewPosition, autoGrow, setZIndex, bodyParser } from "../utils";
 import { db } from "../appwrite/databases";
 
@@ -88,6 +89,12 @@ const NoteCard = ({ note }) => {
         style={{ background: colors.colorHeader }}
       >
         <Trash />
+        {saving && (
+          <div className="card-saving">
+            <Spinner color={colors.colorText} className="spinner" />
+            <span style={{ color: colors.colorText }}>Saving...</span>
+          </div>
+        )}
       </div>
       <div className="card-body">
         <textarea
