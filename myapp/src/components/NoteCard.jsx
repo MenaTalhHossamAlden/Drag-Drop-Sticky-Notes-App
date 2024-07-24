@@ -70,6 +70,9 @@ const NoteCard = ({ note }) => {
           onInput={() => {
             autoGrow(textAreaRef);
           }}
+          onFocus={() => {
+            setZIndex(cardRef.current);
+          }}
         ></textarea>
       </div>
     </div>
