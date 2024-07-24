@@ -1,12 +1,12 @@
-import { useRef, useEffect, React, useState } from "react";
+import { useRef, useEffect, React, useState, useContext } from "react";
 import Trash from "../icons/Trash";
 import Spinner from "../icons/Spinner";
 import { setNewPosition, autoGrow, setZIndex, bodyParser } from "../utils";
 import { db } from "../appwrite/databases";
 import DeleteButton from "./DeleteButton";
+import { NoteContext } from "../context/NoteContext";
 
-const NoteCard = ({ note, setNotes }) => {
-  // const body = bodyParser(note.body);
+const NoteCard = ({ note }) => {
   const [position, setPosition] = useState(bodyParser(note.position));
   const [body, setBody] = useState(bodyParser(note.body));
   const [saving, setSaving] = useState(false);
@@ -91,7 +91,7 @@ const NoteCard = ({ note, setNotes }) => {
         onMouseDown={mouseDown}
         style={{ background: colors.colorHeader }}
       >
-        <DeleteButton id={note.$id} setNotes={setNotes} />
+        <DeleteButton id={note.$id} />
         {saving && (
           <div className="card-saving">
             <Spinner color={colors.colorText} className="spinner" />
