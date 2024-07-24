@@ -12,6 +12,7 @@ const NoteCard = ({ note }) => {
   const [saving, setSaving] = useState(false);
   const keyUpTimer = useRef(null);
   const colors = bodyParser(note.colors);
+  const { setSelectedNote } = useContext(NoteContext);
 
   let mouseStartPos = { x: 0, y: 0 };
 
@@ -32,6 +33,7 @@ const NoteCard = ({ note }) => {
       document.addEventListener("mouseup", mouseUp);
 
       setZIndex(cardRef.current);
+      setSelectedNote(note);
     }
   };
 
@@ -110,6 +112,7 @@ const NoteCard = ({ note }) => {
           }}
           onFocus={() => {
             setZIndex(cardRef.current);
+            setSelectedNote(note);
           }}
           onKeyUp={keyUp}
         ></textarea>
