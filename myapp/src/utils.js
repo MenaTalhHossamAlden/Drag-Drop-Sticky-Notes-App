@@ -21,3 +21,11 @@ export const setZIndex = (selectedCard) => {
   });
   selectedCard.style.zIndex = 999;
 };
+
+export const bodyParser = (value) => {
+  try {
+    return JSON.parse(value);
+  } catch (error) {
+    return value;
+  }
+};
