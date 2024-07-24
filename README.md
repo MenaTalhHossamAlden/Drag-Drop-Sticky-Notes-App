@@ -4,4 +4,5 @@ This project is a Fullstack Drag & Drop Sticky Notes Application built with Reac
 
 Here is a video demonstration of my project:
 
-<video src="https://drive.google.com/uc?export=view&id=1b6rNFHyeywp4CousGp9TYBeteoqMzKF0" />
+[![Watch the video](https://media.istockphoto.com/id/1378731362/vector/paper-notes-with-adhesive-tape-and-pins.jpg?s=612x612&w=0&k=20&c=dqlG9MU2b1hsJZTgEALgiRMuYl0t-zfTL6gAqgTGgAc=)](https://drive.google.com/file/d/1b6rNFHyeywp4CousGp9TYBeteoqMzKF0/view?usp=sharing)
+
