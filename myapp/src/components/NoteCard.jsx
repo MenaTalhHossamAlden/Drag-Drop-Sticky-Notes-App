@@ -7,6 +7,8 @@ const NoteCard = ({ note }) => {
   // const body = bodyParser(note.body);
   const [position, setPosition] = useState(bodyParser(note.position));
   const [body, setBody] = useState(bodyParser(note.body));
+  const [saving, setSaving] = useState(false);
+  const keyUpTimer = useRef(null);
   const colors = bodyParser(note.colors);
 
   let mouseStartPos = { x: 0, y: 0 };
@@ -56,6 +58,18 @@ const NoteCard = ({ note }) => {
     } catch (error) {
       console.error(error);
     }
+    setSaving(false);
+  };
+
+  const keyUp = () => {
+    setSaving(true);
+
+    if (keyUpTimer.current) {
+      clearTimeout(keyUpTimer.current);
+    }
+    keyUpTimer.current = setTimeout(() => {
+      saveData("body", textAreaRef.current.value);
+    }, 2000);
   };
 
   return (
@@ -86,6 +100,7 @@ const NoteCard = ({ note }) => {
           onFocus={() => {
             setZIndex(cardRef.current);
           }}
+          onKeyUp={keyUp}
         ></textarea>
       </div>
     </div>
